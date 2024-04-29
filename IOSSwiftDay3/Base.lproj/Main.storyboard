@@ -154,33 +154,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dOB-zo-nia">
-                            <size key="itemSize" width="166" height="204"/>
+                            <size key="itemSize" width="151" height="186"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="ovi-jm-wpK" customClass="CollectionViewCell" customModule="IOSSwiftDay3" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="166" height="204"/>
+                                <rect key="frame" x="0.0" y="0.0" width="151" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AdG-rw-RKM">
-                                    <rect key="frame" x="0.0" y="0.0" width="166" height="204"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="151" height="186"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hg0-O9-ThM">
-                                            <rect key="frame" x="23" y="30" width="121" height="124"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yet-tI-wu8">
-                                            <rect key="frame" x="23" y="168" width="121" height="21"/>
+                                            <rect key="frame" x="23" y="133" width="121" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hg0-O9-ThM">
+                                            <rect key="frame" x="8" y="8" width="135" height="103"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="166" height="204"/>
+                                <size key="customSize" width="151" height="186"/>
                                 <connections>
                                     <outlet property="myImage" destination="hg0-O9-ThM" id="I5f-P2-Efv"/>
                                     <outlet property="myLabel" destination="yet-tI-wu8" id="qAm-Gd-ria"/>

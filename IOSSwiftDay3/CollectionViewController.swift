@@ -23,7 +23,17 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
         
         getDataFromApi{ [weak self] jsonResponse in
             self?.allObjectsArray = jsonResponse
+            print("Json response = \(jsonResponse.count)")
+            print("allObjectArray = \(self?.allObjectsArray.count)")
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+            
+            
         }
+        
+
         
         
         
@@ -80,7 +90,7 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
         var object = allObjectsArray[indexPath.row]
-        
+        print("Object auther = \(object.author)")
         
         
         DispatchQueue.main.async {
