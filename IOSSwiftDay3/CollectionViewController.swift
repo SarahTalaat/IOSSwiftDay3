@@ -136,6 +136,14 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Calculate width of each cell to fit two cells in a row
+        let collectionViewWidth = collectionView.bounds.width
+        let cellWidth = (collectionViewWidth - 10 * 3) / 2 // 10 is the spacing between cells
+        return CGSize(width: cellWidth, height: cellWidth) // Assuming square cells
+    }
+    
+    
     // MARK: UICollectionViewDelegate
 
     /*
