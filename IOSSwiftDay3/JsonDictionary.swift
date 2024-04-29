@@ -11,7 +11,7 @@ class JsonDictionary: Codable{
     
     var author: String?
     var title: String?
-    var description: String?
+    var desription: String?
     var imageUrl: String?
     var url: String?
     var publishedAt: String?
@@ -19,7 +19,7 @@ class JsonDictionary: Codable{
     enum keyConvension: String , CodingKey{
         case author = "author"
         case title = "title"
-        case description = "description"
+        case desription = "description"
         case imageUrl = "imageUrl"
         case url = "url"
         case publishedAt = "publishedAt"

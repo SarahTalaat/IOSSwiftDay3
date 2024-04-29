@@ -127,12 +127,12 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailsViewController = DetailsViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         
         let selectedObject = allObjectsArray[indexPath.row]
         detailsViewController.selectedObject = selectedObject
         
-        // Push detailViewController onto navigation stack
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
     

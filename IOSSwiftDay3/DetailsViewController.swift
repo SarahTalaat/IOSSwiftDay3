@@ -28,7 +28,7 @@ class DetailsViewController: UIViewController {
             loadImage(from: imageUrl)
         }
         
-        descriptionTextView.text = selectedObject?.description
+        descriptionTextView.text = selectedObject?.desription
         authorLabel.text = selectedObject?.author
         urlLabel.text = selectedObject?.url
         publishedAtLabel.text = selectedObject?.publishedAt
