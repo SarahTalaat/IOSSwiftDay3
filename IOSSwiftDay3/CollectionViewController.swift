@@ -7,22 +7,24 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+//private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController {
 
+    var allObjectsArray: [JsonDictionary] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         // Do any additional setup after loading the view.
         
-
+        getDataFromApi{ [weak self] jsonResponse in
+            self?.allObjectsArray = jsonResponse
+        }
+        
         
         
     }
@@ -38,6 +40,7 @@ class CollectionViewController: UICollectionViewController {
     */
 
     // MARK: UICollectionViewDataSource
+    /*
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -58,6 +61,41 @@ class CollectionViewController: UICollectionViewController {
         return cell
     }
 
+    
+    */
+    //----------------------------------
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        return allObjectsArray.count
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        
+        var object = allObjectsArray[indexPath.row]
+        
+        DispatchQueue.main.async {
+            cell.myLabel.text = object.author
+            cell.myTextView.text = object.title
+       //     cell.myImage.image = object
+        }
+        
+      
+
+        
+    
+        // Configure the cell
+    
+        return cell
+    }
+    
     // MARK: UICollectionViewDelegate
 
     /*
