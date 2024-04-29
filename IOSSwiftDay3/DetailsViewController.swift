@@ -17,10 +17,13 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet var urlLabel: UILabel!
     
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var publishedAtLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.title = "Details"
+        
         // Do any additional setup after loading the view.
         if let selectedObject = selectedObject,
            let imageUrlString = selectedObject.imageUrl as? String,
@@ -32,6 +35,7 @@ class DetailsViewController: UIViewController {
         authorLabel.text = selectedObject?.author
         urlLabel.text = selectedObject?.url
         publishedAtLabel.text = selectedObject?.publishedAt
+        titleLabel.text = selectedObject?.title
         
     }
     func loadImage(from url: URL) {
