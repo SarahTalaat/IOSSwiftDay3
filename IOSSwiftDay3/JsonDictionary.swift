@@ -24,6 +24,7 @@ class JsonDictionary: Codable{
         case url = "url"
         case publishedAt = "publishedAt"
     }
+
     
     
 }
