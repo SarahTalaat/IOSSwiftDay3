@@ -9,6 +9,6 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet var myImage: UIImageView!
-    @IBOutlet var myTextView: UITextView!
+//    @IBOutlet var myTextView: UITextView!
     @IBOutlet var myLabel: UILabel!
 }

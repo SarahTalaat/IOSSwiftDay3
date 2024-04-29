@@ -9,7 +9,7 @@ import UIKit
 
 //private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
 
     var allObjectsArray: [JsonDictionary] = []
     
@@ -81,12 +81,32 @@ class CollectionViewController: UICollectionViewController {
         
         var object = allObjectsArray[indexPath.row]
         
+        
+        
         DispatchQueue.main.async {
             cell.myLabel.text = object.author
-            cell.myTextView.text = object.title
-       //     cell.myImage.image = object
+            print("auther Label= \(object.author)")
+           // cell.myTextView.text = object.title
         }
         
+        // Check if imageUrl is available
+        if let imageUrlString = object.imageUrl, let imageUrl = URL(string: imageUrlString) {
+            // Download image from imageUrl
+            URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+                if let error = error {
+                    print("Error downloading image: \(error)")
+                    return
+                }
+                
+                // Ensure data is not nil and create UIImage from data
+                if let data = data, let image = UIImage(data: data) {
+                    // Update UI on the main thread
+                    DispatchQueue.main.async {
+                        cell.myImage.image = image
+                    }
+                }
+            }.resume()
+        }
       
 
         
@@ -94,6 +114,16 @@ class CollectionViewController: UICollectionViewController {
         // Configure the cell
     
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsViewController = DetailsViewController()
+        
+        let selectedObject = allObjectsArray[indexPath.row]
+        detailsViewController.selectedObject = selectedObject
+        
+        // Push detailViewController onto navigation stack
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     // MARK: UICollectionViewDelegate
