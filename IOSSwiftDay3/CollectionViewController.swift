@@ -147,7 +147,7 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
 
     /*
     // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexaPath: IndexPath) -> Bool {
         return true
     }
     */
