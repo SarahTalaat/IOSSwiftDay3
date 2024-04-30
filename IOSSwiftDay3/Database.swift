@@ -27,6 +27,8 @@ class Database {
      var publishedAt: String?
      */
     
+    var movies: [NSManagedObject]?
+    
     func saveToCoreData(author:String,title:String,desription:String,imageUrl:String,url:String,publishedAt:String) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -41,7 +43,7 @@ class Database {
         
         do{
             try managedContext.save()
-        }catch{
+        }catch let error as NSError{
             print(error)
         }
         
@@ -55,12 +57,29 @@ class Database {
         fetchRequest.predicate = myPredicate
         do{
            
-            var movies = try managedContext.fetch(fetchRequest)
-            
-        }catch let error as NSEntityDescription{
-            print(error)
+            movies = try managedContext.fetch(fetchRequest)
+            if let movies = self.movies {
+                for movie in movies {
+                    print("Title: \(movie.value(forKey: "title") ?? "")")
+                }
+            }
+
+        }catch let error as NSError {
+            print("Error retrieving data: \(error.localizedDescription)")
         }
         
+    }
+    
+    func deleteFromCoreData(movie: NSManagedObject, index: Int){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete((movies?[index])!)
+        movies?.remove(at: index)
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print(error)
+        }
     }
     
     
