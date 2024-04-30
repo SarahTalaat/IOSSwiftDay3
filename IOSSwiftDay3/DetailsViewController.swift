@@ -73,6 +73,7 @@ class DetailsViewController: UIViewController {
         }
         
         isFavouriteButtonClicked.toggle()
+    
         
     }
     

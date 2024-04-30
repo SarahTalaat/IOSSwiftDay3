@@ -10,7 +10,15 @@ import CoreData
 
 class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
-    var favouriteMoviesArray : [NSManagedObject]?
+    var favouriteMoviesArray : [NSManagedObject]? {
+        didSet {
+            tableViewMovies.reloadData()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favouriteMoviesArray = Database.sharedInstance.retriveDataFromCoreData()
+    }
     
     @IBOutlet var tableViewMovies: UITableView!
     
@@ -22,15 +30,18 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         return favouriteMoviesArray?.count ?? 0
     }
     
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        favouriteMoviesArray = Database.sharedInstance.retriveDataFromCoreData()
-        var movie = favouriteMoviesArray?[indexPath.row]
         print("FavouriteMoviewArray count = \(favouriteMoviesArray?.count)")
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = movie?.value(forKey: "title") as? String
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        if let movie = favouriteMoviesArray?[indexPath.row] {
+            cell.textLabel?.text = movie.value(forKey: "title") as? String
+        } else {
+            cell.textLabel?.text = "Unknown"
+        }
+        
         return cell
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
