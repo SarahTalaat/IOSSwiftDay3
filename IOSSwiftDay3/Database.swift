@@ -49,23 +49,20 @@ class Database {
         
     }
     
-    func retrieDataFromCoreData(title:String){
+    func retriveDataFromCoreData() -> [NSManagedObject]{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-        let myPredicate = NSPredicate(format: "title == %@", title)
-        fetchRequest.predicate = myPredicate
+//        let myPredicate = NSPredicate(format: "title == %@", title)
+//        fetchRequest.predicate = myPredicate
         do{
            
             movies = try managedContext.fetch(fetchRequest)
-            if let movies = self.movies {
-                for movie in movies {
-                    print("Title: \(movie.value(forKey: "title") ?? "")")
-                }
-            }
+            return movies ?? []
 
         }catch let error as NSError {
             print("Error retrieving data: \(error.localizedDescription)")
+            return []
         }
         
     }
