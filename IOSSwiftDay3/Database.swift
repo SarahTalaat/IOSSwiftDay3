@@ -53,8 +53,8 @@ class Database {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-//        let myPredicate = NSPredicate(format: "title == %@", title)
-//        fetchRequest.predicate = myPredicate
+        let myPredicate = NSPredicate(format: "title == %@", movies.title)
+        fetchRequest.predicate = myPredicate
         do{
            
             movies = try managedContext.fetch(fetchRequest)
@@ -67,15 +67,31 @@ class Database {
         
     }
     
+//    func deleteFromCoreData(index: Int){
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        managedContext.delete((movies?[index])!)
+//        movies?.remove(at: index)
+//        do{
+//            try managedContext.save()
+//        }catch let error as NSError{
+//            print(error)
+//        }
+//    }
     func deleteFromCoreData(index: Int){
+        guard let managedObject = movies?[index] else {
+            print("Movie not found at index \(index)")
+            return
+        }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
-        managedContext.delete((movies?[index])!)
+        managedContext.delete(managedObject)
         movies?.remove(at: index)
-        do{
+
+        do {
             try managedContext.save()
-        }catch let error as NSError{
-            print(error)
+        } catch let error as NSError {
+            print("Error saving after deletion: \(error.localizedDescription)")
         }
     }
     
