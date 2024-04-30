@@ -10,15 +10,20 @@ import UIKit
 class DetailsViewController: UIViewController {
 
     var selectedObject:JsonDictionary?
+    var isFavouriteButtonClicked = false
     
+    @IBOutlet var favouriteButtonUI: UIButton!
     @IBOutlet var descriptionTextView: UITextView!
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var myImage: UIImageView!
     
     @IBOutlet var urlLabel: UILabel!
     
+
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var publishedAtLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +55,26 @@ class DetailsViewController: UIViewController {
             }
         }.resume()
     }
+
+    @IBAction func favouriteButton(_ sender: Any) {
+        
+        
+        if(isFavouriteButtonClicked){
+            let emptyHeartImage = UIImage(named: "emptyHeart")
+            favouriteButtonUI.setImage(emptyHeartImage, for: .normal)
+            
+            
+        }else{
+
+            let filledHeartImage = UIImage(named: "filledHeart")
+            (sender as? UIButton)?.setImage(filledHeartImage, for: .normal)
+        }
+        
+        isFavouriteButtonClicked.toggle()
+        
+    }
+    
+    
 
     /*
     // MARK: - Navigation

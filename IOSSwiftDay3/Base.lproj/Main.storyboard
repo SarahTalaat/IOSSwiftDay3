@@ -93,6 +93,15 @@
                                 <rect key="frame" x="87" y="78" width="240" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Po1-fo-PTl">
+                                <rect key="frame" x="87" y="780" width="249" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="heart" catalog="system" title="Favourite"/>
+                                <connections>
+                                    <action selector="favouriteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOw-qB-eQx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -101,6 +110,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="aQM-DN-wDa" id="ooL-sk-eGM"/>
                         <outlet property="descriptionTextView" destination="8O9-dE-SI5" id="Bfp-AV-AtF"/>
+                        <outlet property="favouriteButtonUI" destination="Po1-fo-PTl" id="fXZ-z2-8jI"/>
                         <outlet property="myImage" destination="BfZ-2C-BUJ" id="OpX-Y8-Klk"/>
                         <outlet property="publishedAtLabel" destination="Fmd-Hg-jqo" id="mwI-4I-cHc"/>
                         <outlet property="titleLabel" destination="zzq-tK-S5x" id="edX-nB-j0D"/>
