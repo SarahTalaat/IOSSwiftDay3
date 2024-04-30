@@ -10,7 +10,7 @@ import UIKit
 class DetailsViewController: UIViewController {
 
     var selectedObject:JsonDictionary?
-    var indexOfObject: Int
+    var indexOfObject: Int?
     var isFavouriteButtonClicked = false
     
     @IBOutlet var favouriteButtonUI: UIButton!
@@ -63,7 +63,7 @@ class DetailsViewController: UIViewController {
         if(isFavouriteButtonClicked){
             let emptyHeartImage = UIImage(named: "emptyHeart")
             favouriteButtonUI.setImage(emptyHeartImage, for: .normal)
-            Database.sharedInstance.deleteFromCoreData(index: indexOfObject)
+            Database.sharedInstance.deleteFromCoreData(index: indexOfObject ?? 0)
             
         }else{
 
