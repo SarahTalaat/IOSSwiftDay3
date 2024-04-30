@@ -132,6 +132,7 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
         
         let selectedObject = allObjectsArray[indexPath.row]
         detailsViewController.selectedObject = selectedObject
+        detailsViewController.indexOfObject = indexPath.row
         
         navigationController?.pushViewController(detailsViewController, animated: true)
     }

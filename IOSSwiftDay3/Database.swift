@@ -12,7 +12,7 @@ import UIKit
 
 class Database {
     
-    static let shared = Database()
+    static let sharedInstance = Database()
     
     private init() {
      
@@ -70,7 +70,7 @@ class Database {
         
     }
     
-    func deleteFromCoreData(movie: NSManagedObject, index: Int){
+    func deleteFromCoreData(index: Int){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         managedContext.delete((movies?[index])!)
