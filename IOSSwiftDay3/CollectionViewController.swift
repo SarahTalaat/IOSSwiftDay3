@@ -33,6 +33,7 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
             
         }
         
+        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
 
         
         
@@ -146,11 +147,18 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Calculate width of each cell to fit two cells in a row
-        let collectionViewWidth = collectionView.bounds.width
-        let cellWidth = (collectionViewWidth - 10 * 3) / 2 // 10 is the spacing between cells
-        return CGSize(width: cellWidth, height: cellWidth) // Assuming square cells
+//        // Calculate width of each cell to fit two cells in a row
+//        let collectionViewWidth = collectionView.bounds.width
+//        let cellWidth = (collectionViewWidth - 10 * 3) / 2 // 10 is the spacing between cells
+//        return CGSize(width: cellWidth, height: cellWidth) // Assuming square cells
+        
+        let size = (collectionView.frame.size.width-10)/2
+        return CGSize(width: size, height: size)
     }
+    
+    
+    
+    
     
     
     // MARK: UICollectionViewDelegate
