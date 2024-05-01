@@ -99,7 +99,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="heart" catalog="system" title="Favourite"/>
                                 <connections>
-                                    <action selector="favouriteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IOw-qB-eQx"/>
+                                    <action selector="favouriteButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t8e-Jm-DA3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -110,7 +110,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="aQM-DN-wDa" id="ooL-sk-eGM"/>
                         <outlet property="descriptionTextView" destination="8O9-dE-SI5" id="Bfp-AV-AtF"/>
-                        <outlet property="favouriteButtonUI" destination="Po1-fo-PTl" id="fXZ-z2-8jI"/>
+                        <outlet property="favouriteButtonUI" destination="Po1-fo-PTl" id="AzT-o4-k47"/>
                         <outlet property="myImage" destination="BfZ-2C-BUJ" id="OpX-Y8-Klk"/>
                         <outlet property="publishedAtLabel" destination="Fmd-Hg-jqo" id="mwI-4I-cHc"/>
                         <outlet property="titleLabel" destination="zzq-tK-S5x" id="edX-nB-j0D"/>

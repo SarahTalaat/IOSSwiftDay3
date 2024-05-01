@@ -12,6 +12,7 @@ class DetailsViewController: UIViewController {
     var selectedObject:JsonDictionary?
     var indexOfObject: Int?
     var isFavouriteButtonClicked = false
+    var isFavorite: Bool = false
     
     @IBOutlet var favouriteButtonUI: UIButton!
     @IBOutlet var descriptionTextView: UITextView!
@@ -30,7 +31,7 @@ class DetailsViewController: UIViewController {
 
         navigationController?.title = "Details"
         
-        // Do any additional setup after loading the view.
+  
         if let selectedObject = selectedObject,
            let imageUrlString = selectedObject.imageUrl as? String,
            let imageUrl = URL(string: imageUrlString) {
@@ -42,8 +43,16 @@ class DetailsViewController: UIViewController {
         urlLabel.text = selectedObject?.url
         publishedAtLabel.text = selectedObject?.publishedAt
         titleLabel.text = selectedObject?.title
+
+        if isFavorite {
+            favouriteButtonUI.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            favouriteButtonUI.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
         
     }
+    
+
     func loadImage(from url: URL) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
@@ -59,21 +68,41 @@ class DetailsViewController: UIViewController {
 
     @IBAction func favouriteButton(_ sender: Any) {
         
+        isFavorite.toggle()
         
-        if(isFavouriteButtonClicked){
+        if isFavorite {
+   
+            print("XXXX")
+            
+            let filledHeartImage = UIImage(systemName: "heart.fill")
+            favouriteButtonUI.setImage(filledHeartImage, for: .normal)
+            Database.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", description: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
+        } else {
+   
             let emptyHeartImage = UIImage(systemName: "heart")
             favouriteButtonUI.setImage(emptyHeartImage, for: .normal)
-         //   Database.sharedInstance.deleteFromCoreData(index: indexOfObject ?? 0)
             
-        }else{
-
-            let filledHeartImage = UIImage(systemName: "heart.fill")
-            (sender as? UIButton)?.setImage(filledHeartImage, for: .normal)
-            Database.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", description: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
         }
         
-        isFavouriteButtonClicked.toggle()
-    
+        
+        
+        
+        // Toggle isFavorite property
+//        selectedObject?.isFavorite.toggle()
+        
+//        if selectedObject?.isFavorite == true {
+//            // Update UI when favorited
+//            let filledHeartImage = UIImage(systemName: "heart.fill")
+//            favouriteButtonUI.setImage(filledHeartImage, for: .normal)
+//            Database.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", description: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
+//            // Save to CoreData or update your data model accordingly
+//        } else {
+//            // Update UI when unfavorited
+//            let emptyHeartImage = UIImage(systemName: "heart")
+//            favouriteButtonUI.setImage(emptyHeartImage, for: .normal)
+//            // Remove from CoreData or update your data model accordingly
+//        }
+//
         
     }
     

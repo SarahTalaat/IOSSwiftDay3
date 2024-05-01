@@ -10,7 +10,7 @@ import CoreData
 
 class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
-    
+    var favoriteStatus: [String: Bool] = [:]
     var jsonDictionary : JsonDictionary?
     var favouriteMoviesArray : [NSManagedObject]? {
         didSet {
@@ -91,6 +91,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         self.tableViewMovies.delegate = self
         self.tableViewMovies.dataSource = self
         
+
         
         tableViewMovies.reloadData()
         
@@ -110,6 +111,8 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
             jsonDictionary.imageUrl = movie.value(forKey: "imageUrl") as? String
             jsonDictionary.publishedAt = movie.value(forKey: "publishedAt") as? String
             jsonDictionary.url = movie.value(forKey: "url") as? String
+            let title = jsonDictionary.title ?? ""
+            detailsViewController.isFavorite = favoriteStatus[title] ?? true
             
             detailsViewController.selectedObject = jsonDictionary
         }
