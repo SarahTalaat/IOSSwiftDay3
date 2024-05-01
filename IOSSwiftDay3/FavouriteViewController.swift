@@ -10,6 +10,8 @@ import CoreData
 
 class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
+    
+    
     var favouriteMoviesArray : [NSManagedObject]? {
         didSet {
             tableViewMovies.reloadData()
@@ -17,6 +19,10 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+   
+        
+      
         favouriteMoviesArray = Database.sharedInstance.retriveDataFromCoreData()
     }
     
@@ -51,13 +57,24 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
            
-            Database.sharedInstance.deleteFromCoreData(index: indexPath.row)
-         
-            favouriteMoviesArray?.remove(at: indexPath.row)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            if let movie = favouriteMoviesArray?[indexPath.row]{
+//                let title = movie.value(forKey: "title") as! String? ?? "title error"
+//                Database.sharedInstance.deleteFromCoreData(title: title)
+//
+//                favouriteMoviesArray?.remove(at: indexPath.row)
+//
+//                tableView.deleteRows(at: [indexPath], with: .fade)
+//            }
+            
+            if let movie = favouriteMoviesArray?[indexPath.row] {
+                let title = movie.value(forKey: "title") as! String? ?? "title error"
+                favouriteMoviesArray = Database.sharedInstance.deleteFromCoreData(title: title)
+                   }
+
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

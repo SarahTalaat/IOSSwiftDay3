@@ -61,15 +61,15 @@ class DetailsViewController: UIViewController {
         
         
         if(isFavouriteButtonClicked){
-            let emptyHeartImage = UIImage(named: "emptyHeart")
+            let emptyHeartImage = UIImage(systemName: "heart")
             favouriteButtonUI.setImage(emptyHeartImage, for: .normal)
-            Database.sharedInstance.deleteFromCoreData(index: indexOfObject ?? 0)
+         //   Database.sharedInstance.deleteFromCoreData(index: indexOfObject ?? 0)
             
         }else{
 
-            let filledHeartImage = UIImage(named: "filledHeart")
+            let filledHeartImage = UIImage(systemName: "heart.fill")
             (sender as? UIButton)?.setImage(filledHeartImage, for: .normal)
-            Database.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", desription: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
+            Database.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", description: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
         }
         
         isFavouriteButtonClicked.toggle()
