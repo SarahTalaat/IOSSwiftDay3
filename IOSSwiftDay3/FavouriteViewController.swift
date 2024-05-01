@@ -100,8 +100,28 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+//
+//        if let movie = favouriteMoviesArray?[indexPath.row] {
+//            let jsonDictionary = JsonDictionary()
+//            jsonDictionary.title = movie.value(forKey: "title") as? String
+//            jsonDictionary.author = movie.value(forKey: "author") as? String
+//            jsonDictionary.desription = movie.value(forKey: "desription") as? String
+//            jsonDictionary.imageUrl = movie.value(forKey: "imageUrl") as? String
+//            jsonDictionary.publishedAt = movie.value(forKey: "publishedAt") as? String
+//            jsonDictionary.url = movie.value(forKey: "url") as? String
+//            let title = jsonDictionary.title ?? ""
+//            detailsViewController.isFavorite = favoriteStatus[title] ?? true
+//
+//            detailsViewController.selectedObject = jsonDictionary
+//        }
+//
+//        navigationController?.pushViewController(detailsViewController, animated: true)
+        
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        let detailsTableViewController = storyboard.instantiateViewController(withIdentifier: "DetailsTableViewController") as! DetailsTableViewController
         
         if let movie = favouriteMoviesArray?[indexPath.row] {
             let jsonDictionary = JsonDictionary()
@@ -112,12 +132,12 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
             jsonDictionary.publishedAt = movie.value(forKey: "publishedAt") as? String
             jsonDictionary.url = movie.value(forKey: "url") as? String
             let title = jsonDictionary.title ?? ""
-            detailsViewController.isFavorite = favoriteStatus[title] ?? true
+            detailsTableViewController.isFavorite = favoriteStatus[title] ?? true
             
-            detailsViewController.selectedObject = jsonDictionary
+            detailsTableViewController.selectedObject = jsonDictionary
         }
         
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        navigationController?.pushViewController(detailsTableViewController, animated: true)
     }
 
 

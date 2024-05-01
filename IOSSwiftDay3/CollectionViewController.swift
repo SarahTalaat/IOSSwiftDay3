@@ -128,13 +128,21 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+//        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+//
+//        let selectedObject = allObjectsArray[indexPath.row]
+//        detailsViewController.selectedObject = selectedObject
+//        detailsViewController.indexOfObject = indexPath.row
+//
+//        navigationController?.pushViewController(detailsViewController, animated: true)
+        
+        let detailsTableViewController = storyboard.instantiateViewController(withIdentifier: "DetailsTableViewController") as! DetailsTableViewController
         
         let selectedObject = allObjectsArray[indexPath.row]
-        detailsViewController.selectedObject = selectedObject
-        detailsViewController.indexOfObject = indexPath.row
+        detailsTableViewController.selectedObject = selectedObject
+        detailsTableViewController.indexOfObject = indexPath.row
         
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        navigationController?.pushViewController(detailsTableViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
