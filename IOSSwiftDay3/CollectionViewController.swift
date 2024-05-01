@@ -33,11 +33,10 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
             
         }
         
-
-        
-        
-        
+ 
     }
+    
+    
 
     /*
     // MARK: - Navigation
