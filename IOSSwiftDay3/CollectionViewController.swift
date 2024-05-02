@@ -217,6 +217,8 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
             print("Not connected")
             let movieNSManagedObject = DatabaseOfflineMovie.sharedInstance.retriveDataFromCoreData()
             self.allObjectsArray = movieNSManagedObject as? [JsonDictionary] ?? []
+            print("allObjectArray count offline = \(allObjectsArray.count)")
+            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -227,10 +229,11 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
                 self?.allObjectsArray = jsonResponse
                 print("Json response = \(jsonResponse.count)")
                 print("allObjectArray = \(self?.allObjectsArray.count)")
-                
+                print("online array count = \(self?.allObjectsArray.count) " )
                 for i in 0..<(self?.allObjectsArray.count ?? 0 ){
                     
                     var object = self?.allObjectsArray[i]
+                    print("online array count = \(self?.allObjectsArray.count) " )
                     DatabaseOfflineMovie.sharedInstance.saveToCoreData(author: object?.author ?? "author error!!", title: object?.title ?? "title error!!", description: object?.desription ?? "desription error!!", imageUrl: object?.imageUrl ?? "imageUrl error!!", url: object?.url ?? "url error!!" , publishedAt: object?.publishedAt ?? "publishedAt error!!")
                     
                 }

@@ -32,6 +32,9 @@ class DatabaseOfflineMovie{
 
     
     func saveToCoreData(author: String, title: String, description: String, imageUrl: String, url: String, publishedAt: String) {
+        
+        DispatchQueue.main.async {
+            
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
@@ -44,6 +47,7 @@ class DatabaseOfflineMovie{
             let results = try managedContext.fetch(fetchRequest)
             if let existingMovie = results.first as? NSManagedObject {
                 // Movie with the same title already exists, update its attributes if necessary
+                
                 existingMovie.setValue(author, forKey: "author")
                 existingMovie.setValue(title, forKey: "title")
                 existingMovie.setValue(description, forKey: "desription")
@@ -61,10 +65,11 @@ class DatabaseOfflineMovie{
                 movie.setValue(url, forKey: "url")
                 movie.setValue(publishedAt, forKey: "publishedAt")
             }
-            
+            print("DBOff arrCount = \(self.movies?.count)")
             try managedContext.save()
         } catch let error as NSError {
             print("Error saving to CoreData: \(error.localizedDescription)")
+        }
         }
     }
 

@@ -76,12 +76,7 @@ class DetailsViewController: UIViewController {
             
             let filledHeartImage = UIImage(systemName: "heart.fill")
             favouriteButtonUI.setImage(filledHeartImage, for: .normal)
-            
-//            DatabaseOfflineMovie.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", description: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
-//
             Database.sharedInstance.saveToCoreData(author: selectedObject?.author ?? "auther error", title: selectedObject?.title ?? "title error", description: selectedObject?.desription ?? "desription error", imageUrl: selectedObject?.imageUrl ?? "imageUrl error", url: selectedObject?.url ?? "url error", publishedAt: selectedObject?.publishedAt ?? "publishedAt error")
-            
-
         } else {
    
             let emptyHeartImage = UIImage(systemName: "heart")

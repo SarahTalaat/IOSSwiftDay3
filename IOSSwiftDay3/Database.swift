@@ -63,6 +63,7 @@ class Database {
             }
             
             try managedContext.save()
+      
         } catch let error as NSError {
             print("Error saving to CoreData: \(error.localizedDescription)")
         }
