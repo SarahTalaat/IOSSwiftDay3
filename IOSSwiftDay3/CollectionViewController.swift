@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 //private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
@@ -21,20 +21,21 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
 
         // Do any additional setup after loading the view.
         
-        getDataFromApi{ [weak self] jsonResponse in
-            self?.allObjectsArray = jsonResponse
-            print("Json response = \(jsonResponse.count)")
-            print("allObjectArray = \(self?.allObjectsArray.count)")
-            
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-            
-            
-        }
-        
+//        getDataFromApi{ [weak self] jsonResponse in
+//            self?.allObjectsArray = jsonResponse
+//            print("Json response = \(jsonResponse.count)")
+//            print("allObjectArray = \(self?.allObjectsArray.count)")
+//
+//            DispatchQueue.main.async {
+//                self?.collectionView.reloadData()
+//            }
+//
+//
+//        }
 
-        
+
+        checkForInternetConnection()
+  
         
         
     }
@@ -175,5 +176,75 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
     
     }
     */
+    
+  
+    func checkForInternetConnection(){
+        //declare this property where it won't go out of scope relative to your listener
+        let reachability = try! Reachability()
+
+//        reachability.whenReachable = { reachability in
+//            print("Reachable")
+//            getDataFromApi{ [weak self] jsonResponse in
+//                self?.allObjectsArray = jsonResponse
+//                print("Json response = \(jsonResponse.count)")
+//                print("allObjectArray = \(self?.allObjectsArray.count)")
+//
+//                DispatchQueue.main.async {
+//                    self?.collectionView.reloadData()
+//                }
+//
+//                Database.sharedInstance.deleteAllRecordsFromTable()
+//                var i=0
+//                for  i in 0..<(self?.allObjectsArray.count ?? 0) {
+//                    var movieObject = self?.allObjectsArray[i]
+//                    Database.sharedInstance.saveToCoreData(author: movieObject?.author ?? "auther error!", title: movieObject?.title ?? "title error!", description: movieObject?.desription ?? "description error!", imageUrl: movieObject?.imageUrl ?? "imageUrl error!", url: movieObject?.url ?? "url error!" , publishedAt: movieObject?.publishedAt ?? "publishedAt error!")
+//                }
+//            }
+//        }
+//        reachability.whenUnreachable = { _ in
+//            print("Not reachable")
+//            let movieNSManagedObject = Database.sharedInstance.retriveDataFromCoreData()
+//            self.allObjectsArray = movieNSManagedObject as? [JsonDictionary] ?? []
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//
+//        }
+        
+
+        if(reachability.connection == .unavailable){
+
+            print("Not connected")
+            let movieNSManagedObject = DatabaseOfflineMovie.sharedInstance.retriveDataFromCoreData()
+            self.allObjectsArray = movieNSManagedObject as? [JsonDictionary] ?? []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            
+        }else{
+            print("Connected")
+            getDataFromApi{ [weak self] jsonResponse in
+                self?.allObjectsArray = jsonResponse
+                print("Json response = \(jsonResponse.count)")
+                print("allObjectArray = \(self?.allObjectsArray.count)")
+                
+                for i in 0..<(self?.allObjectsArray.count ?? 0 ){
+                    
+                    var object = self?.allObjectsArray[i]
+                    DatabaseOfflineMovie.sharedInstance.saveToCoreData(author: object?.author ?? "author error!!", title: object?.title ?? "title error!!", description: object?.desription ?? "desription error!!", imageUrl: object?.imageUrl ?? "imageUrl error!!", url: object?.url ?? "url error!!" , publishedAt: object?.publishedAt ?? "publishedAt error!!")
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+
+            }
+
+        }
+
+      }
+    
 
 }
+

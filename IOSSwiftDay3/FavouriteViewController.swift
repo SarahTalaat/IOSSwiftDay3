@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Reachability
 
 class FavouriteViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
@@ -23,7 +24,9 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
    
         
       
+//        favouriteMoviesArray = Database.sharedInstance.retriveDataFromCoreData()
         favouriteMoviesArray = Database.sharedInstance.retriveDataFromCoreData()
+
     }
     
     @IBOutlet var tableViewMovies: UITableView!
@@ -121,6 +124,7 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
     }
 
 
+    
     /*
     // MARK: - Navigation
 
@@ -130,5 +134,10 @@ class FavouriteViewController: UIViewController , UITableViewDelegate , UITableV
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+
+
+            
 
 }

@@ -1,18 +1,18 @@
 //
-//  Database.swift
+//  DatabaseOfflineMovie.swift
 //  IOSSwiftDay3
 //
-//  Created by Sara Talat on 30/04/2024.
+//  Created by Sara Talat on 02/05/2024.
 //
 
 import Foundation
 import CoreData
 import UIKit
 
-
-class Database {
+class DatabaseOfflineMovie{
     
-    static let sharedInstance = Database()
+    
+    static let sharedInstance = DatabaseOfflineMovie()
     
     private init() {
      
@@ -36,7 +36,7 @@ class Database {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         // Check if the movie with the same title already exists
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineMovie")
         let predicate = NSPredicate(format: "title == %@", title)
         fetchRequest.predicate = predicate
         
@@ -52,7 +52,7 @@ class Database {
                 existingMovie.setValue(publishedAt, forKey: "publishedAt")
             } else {
                 // Movie doesn't exist, create a new one
-                let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)!
+                let entity = NSEntityDescription.entity(forEntityName: "OfflineMovie", in: managedContext)!
                 let movie = NSManagedObject(entity: entity, insertInto: managedContext)
                 movie.setValue(author, forKey: "author")
                 movie.setValue(title, forKey: "title")
@@ -73,7 +73,7 @@ class Database {
     func retriveDataFromCoreData() -> [NSManagedObject]{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "OfflineMovie")
 //        let myPredicate = NSPredicate(format: "title == %@", movies.title)
 //        fetchRequest.predicate = myPredicate
         do{
@@ -92,7 +92,7 @@ class Database {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineMovie")
         let predicate = NSPredicate(format: "title == %@", title)
         fetchRequest.predicate = predicate
         
@@ -116,7 +116,7 @@ class Database {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OfflineMovie")
 //        let predicate = NSPredicate(format: "title == %@", title)
 //        fetchRequest.predicate = predicate
         
@@ -132,6 +132,6 @@ class Database {
      
         }
     }
-
+    
     
 }
