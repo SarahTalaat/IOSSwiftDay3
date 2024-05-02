@@ -229,7 +229,7 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
                 self?.allObjectsArray = jsonResponse
                 print("Json response = \(jsonResponse.count)")
                 print("allObjectArray = \(self?.allObjectsArray.count)")
-                print("online array count = \(self?.allObjectsArray.count) " )
+                print("onnnnnline array count = \(self?.allObjectsArray.count) " )
                 for i in 0..<(self?.allObjectsArray.count ?? 0 ){
                     
                     var object = self?.allObjectsArray[i]
@@ -249,5 +249,9 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
       }
     
 
+    
 }
+
+
+
 
