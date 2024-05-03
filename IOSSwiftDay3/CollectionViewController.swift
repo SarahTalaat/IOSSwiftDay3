@@ -246,6 +246,7 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
                 if let jsonDictionaryArray = self?.allObjectsArray {
                     for object in jsonDictionaryArray {
                         print("online array count = \(object.author) " )
+                        DatabaseOfflineMovie.sharedInstance.deleteFromCoreData(title: object.title ?? "title error!!!")
                     DatabaseOfflineMovie.sharedInstance.saveToCoreData(author: object.author ?? "author error!!", title: object.title ?? "title error!!", description: object.desription ?? "desription error!!", imageUrl: object.imageUrl ?? "imageUrl error!!", url: object.url ?? "url error!!" , publishedAt: object.publishedAt ?? "publishedAt error!!")
                     }
                 }
