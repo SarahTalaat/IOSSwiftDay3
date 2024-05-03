@@ -7,11 +7,16 @@
 
 import UIKit
 import Reachability
+import CoreData
 //private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
 
     var allObjectsArray: [JsonDictionary] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -215,11 +220,18 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
         if(reachability.connection == .unavailable){
 
             print("Not connected")
-            let movieNSManagedObject = DatabaseOfflineMovie.sharedInstance.retriveDataFromCoreData()
-            self.allObjectsArray = movieNSManagedObject as? [JsonDictionary] ?? []
-            print("allObjectArray count offline = \(allObjectsArray.count)")
             
+        
             DispatchQueue.main.async {
+                let movieNSManagedObject = DatabaseOfflineMovie.sharedInstance.retriveDataFromCoreData()
+                print("not connected cv array count \(movieNSManagedObject.count)")
+                
+                for obj in movieNSManagedObject{
+                    let jsonDictonaryObject = self.convertManagedObjectToDictionary(obj)
+                    self.allObjectsArray.append(jsonDictonaryObject)
+                }
+                
+                print("allObjectArray count offline = \(self.allObjectsArray.count)")
                 self.collectionView.reloadData()
             }
             
@@ -230,17 +242,19 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
                 print("Json response = \(jsonResponse.count)")
                 print("allObjectArray = \(self?.allObjectsArray.count)")
                 print("onnnnnline array count = \(self?.allObjectsArray.count) " )
-                for i in 0..<(self?.allObjectsArray.count ?? 0 ){
-                    
-                    var object = self?.allObjectsArray[i]
-                    print("online array count = \(self?.allObjectsArray.count) " )
-                    DatabaseOfflineMovie.sharedInstance.saveToCoreData(author: object?.author ?? "author error!!", title: object?.title ?? "title error!!", description: object?.desription ?? "desription error!!", imageUrl: object?.imageUrl ?? "imageUrl error!!", url: object?.url ?? "url error!!" , publishedAt: object?.publishedAt ?? "publishedAt error!!")
-                    
-                }
                 
+                if let jsonDictionaryArray = self?.allObjectsArray {
+                    for object in jsonDictionaryArray {
+                        print("online array count = \(object.author) " )
+                    DatabaseOfflineMovie.sharedInstance.saveToCoreData(author: object.author ?? "author error!!", title: object.title ?? "title error!!", description: object.desription ?? "desription error!!", imageUrl: object.imageUrl ?? "imageUrl error!!", url: object.url ?? "url error!!" , publishedAt: object.publishedAt ?? "publishedAt error!!")
+                    }
+                }
+
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
+
+
 
             }
 
@@ -248,6 +262,17 @@ class CollectionViewController: UICollectionViewController , UICollectionViewDel
 
       }
     
+    func convertManagedObjectToDictionary(_ managedObject: NSManagedObject) -> JsonDictionary {
+        let dictionary = JsonDictionary()
+        dictionary.author = managedObject.value(forKey: "author") as? String
+        dictionary.title = managedObject.value(forKey: "title") as? String
+        dictionary.desription = managedObject.value(forKey: "description") as? String
+        dictionary.imageUrl = managedObject.value(forKey: "imageUrl") as? String
+        dictionary.url = managedObject.value(forKey: "url") as? String
+        dictionary.publishedAt = managedObject.value(forKey: "publishedAt") as? String
+        return dictionary
+    }
+
 
     
 }

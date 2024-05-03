@@ -17,9 +17,12 @@ class DatabaseOfflineMovie{
         
     }
     
-    var movies: [NSManagedObject]? = [] // Initialize movies array
+    var movies: [NSManagedObject]? = []
     
     func saveToCoreData(author: String, title: String, description: String, imageUrl: String, url: String, publishedAt: String) {
+        
+        print("author DB \(author)")
+        print("title DB \(title)")
         DispatchQueue.main.async {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let managedContext = appDelegate.persistentContainer.viewContext
@@ -47,10 +50,11 @@ class DatabaseOfflineMovie{
                     movie.setValue(url, forKey: "url")
                     movie.setValue(publishedAt, forKey: "publishedAt")
                 }
+            
                 try managedContext.save()
                 
-                // Fetch updated data and assign it to the movies array
-                self.movies = self.retriveDataFromCoreData()
+//                // Fetch updated data and assign it to the movies array
+//                self.movies = self.retriveDataFromCoreData()
             } catch let error as NSError {
                 print("Error saving to CoreData: \(error.localizedDescription)")
             }
@@ -64,8 +68,11 @@ class DatabaseOfflineMovie{
         
         do {
             let movies = try managedContext.fetch(fetchRequest)
+            print("Movies db count = \(movies.count)")
             return movies
+            
         } catch let error as NSError {
+            
             print("Error retrieving data: \(error.localizedDescription)")
             return []
         }
