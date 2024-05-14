@@ -19,7 +19,6 @@
 		B6A643102BDF9C8300F28AF7 /* IOSSwiftDay3UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A6430F2BDF9C8300F28AF7 /* IOSSwiftDay3UITestsLaunchTests.swift */; };
 		B6A6431D2BDF9F1100F28AF7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A6431C2BDF9F1100F28AF7 /* CollectionViewCell.swift */; };
 		B6A643212BDFA2D800F28AF7 /* JsonDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A643202BDFA2D800F28AF7 /* JsonDictionary.swift */; };
-		B6A643232BDFA3B700F28AF7 /* JsonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A643222BDFA3B700F28AF7 /* JsonResponse.swift */; };
 		B6A643252BDFA52400F28AF7 /* JsonConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A643242BDFA52400F28AF7 /* JsonConnection.swift */; };
 		B6A643272BDFA9A300F28AF7 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A643262BDFA9A200F28AF7 /* CollectionViewController.swift */; };
 		B6A643292BDFC3B700F28AF7 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A643282BDFC3B700F28AF7 /* DetailsViewController.swift */; };
@@ -62,7 +61,6 @@
 		B6A6430F2BDF9C8300F28AF7 /* IOSSwiftDay3UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSSwiftDay3UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B6A6431C2BDF9F1100F28AF7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B6A643202BDFA2D800F28AF7 /* JsonDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDictionary.swift; sourceTree = "<group>"; };
-		B6A643222BDFA3B700F28AF7 /* JsonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonResponse.swift; sourceTree = "<group>"; };
 		B6A643242BDFA52400F28AF7 /* JsonConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConnection.swift; sourceTree = "<group>"; };
 		B6A643262BDFA9A200F28AF7 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B6A643282BDFC3B700F28AF7 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +94,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6132AE02BF36E2200938050 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B6132AE12BF36E2A00938050 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B6132AE22BF36ECD00938050 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		B6A642E02BDF9C8100F28AF7 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +138,9 @@
 		B6A642EB2BDF9C8100F28AF7 /* IOSSwiftDay3 */ = {
 			isa = PBXGroup;
 			children = (
+				B6132AE22BF36ECD00938050 /* Modules */,
+				B6132AE12BF36E2A00938050 /* View */,
+				B6132AE02BF36E2200938050 /* Model */,
 				B6A642EC2BDF9C8100F28AF7 /* AppDelegate.swift */,
 				B6A642EE2BDF9C8100F28AF7 /* SceneDelegate.swift */,
 				B6A642F02BDF9C8100F28AF7 /* ViewController.swift */,
@@ -128,7 +150,6 @@
 				B6A642FA2BDF9C8300F28AF7 /* Info.plist */,
 				B6A6431C2BDF9F1100F28AF7 /* CollectionViewCell.swift */,
 				B6A643202BDFA2D800F28AF7 /* JsonDictionary.swift */,
-				B6A643222BDFA3B700F28AF7 /* JsonResponse.swift */,
 				B6A643242BDFA52400F28AF7 /* JsonConnection.swift */,
 				B6A643262BDFA9A200F28AF7 /* CollectionViewController.swift */,
 				B6A643282BDFC3B700F28AF7 /* DetailsViewController.swift */,
@@ -300,7 +321,6 @@
 				B68E602B2BE265D700F639D8 /* DetailsTableViewController.swift in Sources */,
 				B6A642EF2BDF9C8100F28AF7 /* SceneDelegate.swift in Sources */,
 				B6A643212BDFA2D800F28AF7 /* JsonDictionary.swift in Sources */,
-				B6A643232BDFA3B700F28AF7 /* JsonResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
